@@ -6,8 +6,6 @@ userInput = input("Enter Channel Name > ")
 url = helix + "/users?login=" + userInput
 headers = {"Client-id":appID,
            "Authorization":aat}
-
-response = req.get(url, headers=headers)
-response.raise_for_status()
-data = response.json()
-print(data["data"][0]["id"])
+resp = req.get(url, headers=headers)
+data = resp.json()["data"][0]["id"]
+print(userInput+"s userID is " + data)
