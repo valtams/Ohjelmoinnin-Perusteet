@@ -1,11 +1,10 @@
 # --------------------------------------------------------------
 #  twitch_user_id.py
 # --------------------------------------------------------------
+import requests
 import json
 import sys
 from typing import Optional
-
-import requests as req
 
 # Your own credentials – keep these in a separate, non‑committed file.
 # Example:  creds.py  →  appID = "my-client-id";  aat = "Bearer <token>"
@@ -34,8 +33,8 @@ def get_user_id(channel_name: str) -> Optional[str]:
     url = f"{HELIX_BASE}/users?login={channel_name}"
 
     try:
-        resp = req.get(url, headers=HEADERS, timeout=TIMEOUT)
-    except req.RequestException as exc:
+        response = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+    except requests.RequestException as exc:
         # Network‑level problems (DNS failure, timeout, connection reset, …)
         print(f"[❗] Network error while contacting Twitch: {exc}", file=sys.stderr)
         return None
@@ -43,16 +42,16 @@ def get_user_id(channel_name: str) -> Optional[str]:
     # ------------------------------------------------------------------
     # 1️⃣  HTTP status‑code handling
     # ------------------------------------------------------------------
-    if resp.status_code != 200:
+    if response.status_code != 200:
         # Twitch returns useful JSON even on errors – try to surface it.
         try:
-            err_payload = resp.json()
-            err_msg = err_payload.get("message", resp.text)
+            err_payload = response.json()
+            err_msg = err_payload.get("message", response.text)
         except (ValueError, json.JSONDecodeError):
-            err_msg = resp.text
+            err_msg = response.text
 
         print(
-            f"[❗] Twitch API responded with {resp.status_code} ({resp.reason}). "
+            f"[❗] Twitch API responded with {response.status_code} ({response.reason}). "
             f"Details: {err_msg}",
             file=sys.stderr,
         )
@@ -62,7 +61,7 @@ def get_user_id(channel_name: str) -> Optional[str]:
     # 2️⃣  Parse the JSON payload
     # ------------------------------------------------------------------
     try:
-        payload = resp.json()
+        payload = response.json()
     except (ValueError, json.JSONDecodeError):
         print("[❗] Failed to decode JSON response from Twitch.", file=sys.stderr)
         return None
