@@ -1,7 +1,6 @@
 i = 0
 j = 1
-while i < 9999:
-        print(i)
-        print(j)
+for k in range(50):
+        print(f"{i}\n{j}")
         i = i + j
         j = i + j
