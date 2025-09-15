@@ -1,3 +1,4 @@
 **/creds.*
 __pycache__/
 temp/
+tasks/
