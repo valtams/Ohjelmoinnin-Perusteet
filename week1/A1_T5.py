@@ -1,5 +1,5 @@
 print("Calculate the area of a wall.")
-W = float(input("Enter the width in meters: ").replace(",","."))
-H = float(input("Enter the height in meters: ").replace(",","."))
+W = input("Enter the width in meters: ").replace(",",".")
+H = input("Enter the height in meters: ").replace(",",".")
 print(f"Width is {W}m and height is {H}m.")
 print(f"The wall will be {round(float(W) * float(H), 2)} square meters.")
