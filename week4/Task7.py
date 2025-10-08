@@ -1,16 +1,16 @@
-def per(n):
-	if len(str(n)) == 1:
-		print("No more steps.")
-		return
-	digits = [int(i) for i in str(n)]
-
-	result = 1
-	for j in digits:
-		result *= j
-	print(f'{" * ".join(str(n))} = {result}')
-	per(result)
-
 print("Program starting.\n")
 print("Check multiplicative persistence.")
+#n = number, c = count, d = digits, r = result
 n = int(input("Insert an integer: "))
-per(n)
+c = 0
+while len(str(n)) > 1:
+	c += 1
+	d = [int(i) for i in str(n)]
+	r = 1
+	for j in d:
+		r *= j
+	print(f'{" * ".join(str(n))} = {r}')
+	n = r
+print("No more steps.")
+print(f"\nThis program took {c} step(s)")
+print("\nProgram ending.")
