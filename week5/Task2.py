@@ -7,7 +7,7 @@ def main():
 
 def frameWord(PWord):
 	l = len(PWord)
-	print("*" * (l + 4))
+	print("\n" + "*" * (l + 4))
 	print(f"* {PWord} *")
 	print("*" * (l + 4))
 	return None
