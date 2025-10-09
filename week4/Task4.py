@@ -7,3 +7,4 @@ while word != "":
 	sentence += word + " "
 	word = input("Insert a word: ")
 print(f"\nYou inserted:\n- {words} words\n- {len(sentence)- words} characters")
+print("\nProgram ending.")
