@@ -4,16 +4,16 @@ def main():
 		showOptions()
 		choice = askChoice()
 		if choice == 0:
-			print("\nProgram ending.")
+			print("Exiting program.")
 			break
 		elif choice == 1:
 			print(f'Current count - {count}\n')
 		elif choice == 2:
 			count += 1
-			print(f'Count increased to {count}\n')
+			print('Count increased!\n')
 		elif choice == 3:
 			count = 0
-			print("Count reset to 0\n")
+			print("Cleared count!\n")
 		else: 
 			print("Unknown option!\n")
 
@@ -33,3 +33,4 @@ def askChoice():
 
 print("Program starting.")
 main()
+print("\nProgram ending.")
